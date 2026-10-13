@@ -1,0 +1,19 @@
+from sentence_transformers import SentenceTransformer
+
+
+MODEL_NAME = "BAAI/bge-small-en-v1.5"
+
+model = SentenceTransformer(MODEL_NAME)
+
+
+def generate_embedding(text: str) -> list[float]:
+    """
+    Generate a local embedding for the provided text.
+    """
+
+    embedding = model.encode(
+        text,
+        normalize_embeddings=True,
+    )
+
+    return embedding.tolist()
